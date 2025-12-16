@@ -1,7 +1,10 @@
 package com.example.Product.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "products_list")
@@ -21,6 +24,10 @@ public class Product {
 
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "wishList")
+    private Set<User> users = new HashSet<>();
 
     public Product() {
     }
@@ -70,6 +77,14 @@ public class Product {
 
     public void setStockQuantity(Integer stockQuantity) {
         this.stockQuantity = stockQuantity;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }
 

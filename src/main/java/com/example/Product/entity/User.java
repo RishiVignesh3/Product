@@ -6,7 +6,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -24,6 +26,14 @@ public class User implements UserDetails {
 
     @Column(nullable = false)
     private String password;
+
+    @ManyToMany
+    @JoinTable(
+            name = "wishList",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<Product> wishList = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -108,6 +118,14 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Set<Product> getWishList() {
+        return wishList;
+    }
+
+    public void setWishList(Set<Product> wishList) {
+        this.wishList = wishList;
     }
 }
 

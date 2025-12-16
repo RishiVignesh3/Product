@@ -58,7 +58,8 @@ public class AuthService {
                 accessToken,
                 refreshToken.getToken(),
                 jwtService.getAccessTokenExpiration(),
-                user.getUsername()
+                user.getUsername(),
+                user.getId()
         );
     }
 
@@ -81,7 +82,8 @@ public class AuthService {
                 accessToken,
                 refreshToken.getToken(),
                 jwtService.getAccessTokenExpiration(),
-                user.getUsername()
+                user.getUsername(),
+                user.getId()
         );
     }
 
@@ -104,7 +106,8 @@ public class AuthService {
                 accessToken,
                 newRefreshToken.getToken(),
                 jwtService.getAccessTokenExpiration(),
-                user.getUsername()
+                user.getUsername(),
+                user.getId()
         );
     }
 
